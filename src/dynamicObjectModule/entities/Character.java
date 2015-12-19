@@ -7,6 +7,9 @@ public class Character extends Sprite {
 		UP, DOWN, LEFT, RIGHT
 	};
 
+	public static final int DEFAULT_SPEED = 0;
+	public static final DIRECTIONS DEFAULT_DIRECTION = DIRECTIONS.RIGHT; 
+
 	private int _id;
 	private int _speed;
 	private int _x;

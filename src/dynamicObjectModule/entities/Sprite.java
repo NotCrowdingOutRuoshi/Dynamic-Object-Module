@@ -3,6 +3,9 @@ package dynamicObjectModule.entities;
 import javax.swing.JLabel;
 
 public abstract class Sprite extends JLabel {
+	public static final int DEFAULT_X = 0;
+	public static final int DEFAULT_Y = 0;
+	
 	protected int _x;
 	protected int _y;
 

@@ -12,14 +12,14 @@ import fake.TCPClientModule;
 
 public class DynamicObjectModule {
 	private ArrayList<Item> _items;
-	private ArrayList<Character> _sprites;
+	private ArrayList<Character> _characters;
 	private TCPClientModule _tcpClientModule;
 
 	public DynamicObjectModule(TCPClientModule tcpClientModule) {
 		assert (tcpClientModule != null);
 
 		_items = new ArrayList<Item>();
-		_sprites = new ArrayList<Character>();
+		_characters = new ArrayList<Character>();
 		_tcpClientModule = tcpClientModule;
 	}
 
@@ -39,12 +39,12 @@ public class DynamicObjectModule {
 		assert (clientNumber >= 0);
 		assert (findVirtualCharacter(clientNumber) == null);
 
-		for (Character character : _sprites) {
+		for (Character character : _characters) {
 			assert (clientNumber != character.getId());
 		}
 
-		Character character = new Character(clientNumber, 0, 0, Character.DIRECTIONS.RIGHT, 0);
-		_sprites.add(character);
+		Character character = new Character(clientNumber, Character.DEFAULT_X, Character.DEFAULT_Y, Character.DEFAULT_DIRECTION, Character.DEFAULT_SPEED);
+		_characters.add(character);
 	}
 
 	public Item findItem(int index) {
@@ -61,7 +61,7 @@ public class DynamicObjectModule {
 
 	public Character findVirtualCharacter(int id) {
 		assert (id >= 0);
-		for (Character character : _sprites) {
+		for (Character character : _characters) {
 			if (character.getId() == id) {
 				return character;
 			}
@@ -71,17 +71,20 @@ public class DynamicObjectModule {
 	}
 
 	public Sprite[] getAllDynamicObjects() {
-		Character[] sprites = new Character[_sprites.size()];
-		_sprites.toArray(sprites);
+		Character[] characters = new Character[_characters.size()];
+		_characters.toArray(characters);
 
 		Item[] items = new Item[_items.size()];
 		_items.toArray(items);
 
-		ArrayList<Sprite> result = new ArrayList<Sprite>();
-		result.addAll(_sprites);
-		result.addAll(_items);
+		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
+		sprites.addAll(_characters);
+		sprites.addAll(_items);
 
-		return result.toArray(null);
+		Sprite[] result = new Sprite[sprites.size()];
+		sprites.toArray(result);
+		
+		return result;
 	}
 
 	public Point getVirtualCharacterPosition(int clientNumber) {
@@ -92,7 +95,7 @@ public class DynamicObjectModule {
 		return new Point(character.getX(), character.getY());
 	}
 
-	public void keyGETPressed(int id) {
+	public boolean keyGETPressed(int id) {
 		Character character = findVirtualCharacter(id);
 		
 		assert (character != null);
@@ -100,20 +103,25 @@ public class DynamicObjectModule {
 		for (Item item : _items) {
 			if (item.getX() == character.getX() && item.getY() == character.getY()) {
 				_tcpClientModule.inputMoves(MoveCodes.GET);
-				break;
+				return true;
 			}
 		}
+		
+		return false;
 	}
 
-	public void updateItem(int index, boolean shared, int owner, int x, int y) {
-		assert (findVirtualCharacter(owner) != null);
-
+	public void updateItem(int index, boolean shared, int ownerId, int x, int y) {
 		Item item = findItem(index);
+		Character owner = findVirtualCharacter(ownerId); 
 
 		assert (item != null);
 
 		item.setShared(shared);
-		item.setOwner(owner);
+		
+		if (owner != null) {
+			item.setOwner(ownerId);
+		}
+		
 		item.setX(x);
 		item.setY(y);
 	}
