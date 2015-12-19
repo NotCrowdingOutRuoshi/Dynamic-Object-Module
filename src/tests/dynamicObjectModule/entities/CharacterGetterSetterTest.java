@@ -2,6 +2,8 @@ package tests.dynamicObjectModule.entities;
 
 import static org.junit.Assert.*;
 
+import javax.naming.InitialContext;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dynamicObjectModule.entities.Character;
+import dynamicObjectModule.entities.Item;
 import dynamicObjectModule.entities.Character.DIRECTIONS;
 
 public class CharacterGetterSetterTest {
@@ -39,52 +42,84 @@ public class CharacterGetterSetterTest {
 
 	@Test
 	public void testGetX() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("gotten x-axis value should be " + initialX, initialX, character.getX());
 	}
 
 	@Test
 	public void testGetY() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("gotten y-axis value should be " + initialY, initialY, character.getY());
 	}
 
 	@Test
 	public void testSetX() {
-		fail("Not yet implemented"); // TODO
+		int expectedX = 100;
+		
+		character.setX(expectedX);
+		
+		assertEquals("x-axis value of character should be set to " + expectedX, expectedX, character.getX());
 	}
 
 	@Test
 	public void testSetY() {
-		fail("Not yet implemented"); // TODO
+		int expectedY = 100;
+		
+		character.setY(expectedY);
+		
+		assertEquals("y-axis value of character should be set to " + expectedY, expectedY, character.getY());
 	}
 
 	@Test
 	public void testGetDirection() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("direction of character should be" + initialDirection, initialDirection, character.getDirection());
 	}
 
 	@Test
 	public void testSetDirection() {
-		fail("Not yet implemented"); // TODO
+		for (DIRECTIONS direction : DIRECTIONS.values()) {
+			character = new Character(initialId, initialX, initialY, initialDirection, initialSpeed);
+			testSetDirection(direction);
+		}
+	}
+	
+	@Test
+	public void testContinuouselySetDirection() {
+		for (DIRECTIONS direction : DIRECTIONS.values()) {
+			testSetDirection(direction);
+		}
+	}
+	
+	@Test
+	private void testSetDirection(DIRECTIONS direction) {
+		character.setDirection(direction);
+		assertEquals("direction of character should be set to " + direction, direction, character.getDirection());
 	}
 
 	@Test
 	public void testGetId() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("gotten ID number of character should be " + initialId, initialId, character.getId());
 	}
 
 	@Test
 	public void testSetId() {
-		fail("Not yet implemented"); // TODO
+		int expectedId = 100;
+		
+		character.setId(expectedId);
+		
+		assertEquals("ID number fo character should be set to " + expectedId, expectedId, character.getId());
 	}
 
 	@Test
 	public void testGetSpeed() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("gotten speed of character should be " + initialSpeed, initialSpeed, character.getSpeed());
 	}
 
 	@Test
 	public void testSetSpeed() {
-		fail("Not yet implemented"); // TODO
+		int expectedSpeed = 100;
+		
+		character.setSpeed(expectedSpeed);
+		
+		assertEquals("speed of character should be set to " + expectedSpeed, expectedSpeed, character.getSpeed());
 	}
 
 }
