@@ -34,6 +34,7 @@ public class CharacterGetterSetterTest {
 
 	@After
 	public void tearDown() throws Exception {
+		character = null;
 	}
 
 	@Test

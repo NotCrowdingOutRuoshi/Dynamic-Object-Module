@@ -33,6 +33,7 @@ public class ItemGetterSetterTest {
 
 	@After
 	public void tearDown() throws Exception {
+		item = null;
 	}
 
 	@Test
