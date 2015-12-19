@@ -15,11 +15,9 @@ public class Character extends Sprite {
 
 	public Character(int id, int x, int y, DIRECTIONS direction, int speed) {
 		super(x, y);
+		
 		assert (id >= 0);
-		assert (direction == DIRECTIONS.UP);
-		assert (direction == DIRECTIONS.DOWN);
-		assert (direction == DIRECTIONS.LEFT);
-		assert (direction == DIRECTIONS.RIGHT);
+		assert (isDirectionValid(direction));
 		assert (speed >= 0);
 
 		_id = id;
@@ -32,10 +30,7 @@ public class Character extends Sprite {
 	}
 
 	public void setDirection(DIRECTIONS direction) {
-		assert (direction == DIRECTIONS.UP);
-		assert (direction == DIRECTIONS.DOWN);
-		assert (direction == DIRECTIONS.LEFT);
-		assert (direction == DIRECTIONS.RIGHT);
+		assert (isDirectionValid(direction));
 
 		_direction = direction;
 	}
@@ -58,24 +53,18 @@ public class Character extends Sprite {
 		_speed = speed;
 	}
 
-	public int getX() {
-		return _x;
-	}
-
-	public void setX(int x) {
-		_x = x;
-	}
-
-	public int getY() {
-		return _y;
-	}
-
-	public void setY(int y) {
-		_y = y;
-	}
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawRect(_x, _y, 100, 100);
+	}
+
+	private boolean isDirectionValid(DIRECTIONS direction) {
+		for (DIRECTIONS dir : DIRECTIONS.values()) {
+			if (direction == dir) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
