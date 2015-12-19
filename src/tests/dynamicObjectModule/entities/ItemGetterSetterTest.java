@@ -12,11 +12,11 @@ import dynamicObjectModule.entities.Item;
 
 public class ItemGetterSetterTest {
 	private Item item;
-	private String initialItemName = "name";
-	private int initialItemIndex = 0;
-	private int initialItemX = 0;
-	private int initialItemY = 0;
-	private boolean initialItemShared = true;
+	private final String initialItemName = "name";
+	private final int initialItemIndex = 0;
+	private final int initialItemX = 0;
+	private final int initialItemY = 0;
+	private final boolean initialItemShared = true;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

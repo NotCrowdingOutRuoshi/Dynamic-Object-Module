@@ -8,7 +8,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import dynamicObjectModule.entities.Character;
+import dynamicObjectModule.entities.Character.DIRECTIONS;
+
 public class CharacterGetterSetterTest {
+	private Character character;
+	private final int initialId = 0;
+	private final int initialX = 0;
+	private final int initialY = 0;
+	private final DIRECTIONS initialDirection = DIRECTIONS.RIGHT;
+	private final int initialSpeed = 0;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,6 +29,7 @@ public class CharacterGetterSetterTest {
 
 	@Before
 	public void setUp() throws Exception {
+		character = new Character(initialId, initialX, initialY, initialDirection, initialSpeed);
 	}
 
 	@After
