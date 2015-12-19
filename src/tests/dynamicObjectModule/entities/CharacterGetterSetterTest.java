@@ -105,7 +105,6 @@ public class CharacterGetterSetterTest {
 		}
 	}
 
-	@Test
 	private void testSetDirection(DIRECTIONS direction) {
 		character.setDirection(direction);
 		assertEquals("direction of character should be set to " + direction, direction, character.getDirection());
@@ -131,7 +130,7 @@ public class CharacterGetterSetterTest {
 		assertEquals("ID number fo character should be set to " + expectedId, expectedId, character.getId());
 	}
 	
-	@Test
+	@Test(expected=AssertionError.class)
 	public void testSetIdToNegative() {
 		int unexpectedId = -1;
 		
