@@ -21,10 +21,13 @@ public class Item extends Sprite {
 	public void draw() {
 		super.draw();
 
-		consoleOutput.append("Item drawed \n");
-		consoleOutput.append("ID: " + _id + "\n");
-		consoleOutput.append("x: " + _x + "\n");
-		consoleOutput.append("y: " + _y + "\n");
+		consoleOutput.append("Draw:Item");
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("ID:" + _id);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("X:" + _x);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("Y:" + _y);
 
 		System.out.println(consoleOutput);
 	}

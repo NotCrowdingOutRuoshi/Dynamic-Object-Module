@@ -25,12 +25,17 @@ public class Character extends Sprite {
 	public void draw() {
 		super.draw();
 
-		consoleOutput.append("Character drawed\n");
-		consoleOutput.append("ID: " + _id + "\n");
-		consoleOutput.append("x: " + _x + "\n");
-		consoleOutput.append("y: " + _y + "\n");
-		consoleOutput.append("direction: " + _direction + "\n");
-		consoleOutput.append("speed: " + _speed + "\n");
+		consoleOutput.append("Draw:Character");
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("ID:" + _id);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("X:" + _x);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("Y:" + _y);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("Direction:" + _direction);
+		consoleOutput.append(System.getProperty("line.separator"));
+		consoleOutput.append("Speed:" + _speed);
 
 		System.out.println(consoleOutput);
 	}

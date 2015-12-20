@@ -21,6 +21,7 @@ public abstract class Sprite {
 
 	public void draw() {
 		flushConsoleOutput();
+		System.out.println(System.getProperty("line.separator"));
 	}
 
 	public String flushConsoleOutput() {
