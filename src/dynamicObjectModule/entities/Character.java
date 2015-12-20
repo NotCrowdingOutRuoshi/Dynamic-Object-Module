@@ -12,8 +12,6 @@ public class Character extends Sprite {
 
 	private int _id;
 	private int _speed;
-	private int _x;
-	private int _y;
 	private DIRECTIONS _direction;
 
 	public Character(int id, int x, int y, DIRECTIONS direction, int speed) {

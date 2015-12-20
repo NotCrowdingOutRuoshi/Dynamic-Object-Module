@@ -41,7 +41,7 @@ public class Item extends Sprite {
 	}
 
 	public void setOwner(int owner) {
-		assert (owner >= 0);
+		assert (owner >= 0 || owner == EMPTY_OWNER);
 		_owner = owner;
 	}
 

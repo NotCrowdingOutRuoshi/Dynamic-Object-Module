@@ -60,7 +60,6 @@ public class DynamicObjectModule {
 	}
 
 	public Character findVirtualCharacter(int id) {
-		assert (id >= 0);
 		for (Character character : _characters) {
 			if (character.getId() == id) {
 				return character;
@@ -118,7 +117,7 @@ public class DynamicObjectModule {
 
 		item.setShared(shared);
 		
-		if (owner != null) {
+		if (owner != null || ownerId == Item.EMPTY_OWNER) {
 			item.setOwner(ownerId);
 		}
 		
