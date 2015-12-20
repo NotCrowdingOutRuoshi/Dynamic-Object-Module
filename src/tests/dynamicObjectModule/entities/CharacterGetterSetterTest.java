@@ -64,7 +64,7 @@ public class CharacterGetterSetterTest {
 
 		character.setX(unexpectedX);
 
-		fail("x-axis value of character should not be set to a negative integer");
+		assertFalse("x-axis value of character should not be set to a negative integer", true);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class CharacterGetterSetterTest {
 
 		character.setY(unexpectedY);
 
-		fail("y-axis value of character should not be set to a negative integer");
+		assertFalse("y-axis value of character should not be set to a negative integer", true);
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class CharacterGetterSetterTest {
 	@Test(expected=AssertionError.class)
 	public void testSetDirectionToNull() {
 		character.setDirection(null);
-		fail("direction of character should not be set to null");
+		assertFalse("direction of character should not be set to null", true);
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class CharacterGetterSetterTest {
 		
 		character.setId(unexpectedId);
 		
-		fail("ID number of character should not be set to a negative value");
+		assertFalse("ID number of character should not be set to a negative value", true);
 	}
 
 	@Test
@@ -159,6 +159,6 @@ public class CharacterGetterSetterTest {
 		
 		character.setSpeed(unexpedtedSpeed);
 		
-		fail("speed of character should not be set to a negative value");
+		assertFalse("speed of character should not be set to a negative value", true);
 	}
 }

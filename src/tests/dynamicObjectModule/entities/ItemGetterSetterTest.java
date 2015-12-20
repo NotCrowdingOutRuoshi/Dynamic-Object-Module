@@ -52,7 +52,7 @@ public class ItemGetterSetterTest {
 	public void testSetIndexWithNegativeValue() {
 		int unexpectedIndex = -1;
 		item.setIndex(unexpectedIndex);
-		fail("index should not be set to negative value");
+		assertFalse("index should not be set to negative value", true);
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class ItemGetterSetterTest {
 	public void testSetOwnerWithNegativeValue() {
 		int unexpectedOwner = -1;
 		item.setOwner(unexpectedOwner);
-		fail("owner should not be set to negative value");
+		assertFalse("owner should not be set to negative value", true);
 	}
 
 	@Test
@@ -102,13 +102,13 @@ public class ItemGetterSetterTest {
 	public void testSetNameWithEmptyString() {
 		String unexpectedName = "";
 		item.setName(unexpectedName);
-		fail("item name should not be set to empty string");
+		assertFalse("item name should not be set to empty string", true);
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void testSetNameWithNullString() {
 		item.setName(null);
-		fail("item name should not be set to null");
+		assertFalse("item name should not be set to null", true);
 	}
 
 	@Test
@@ -147,7 +147,7 @@ public class ItemGetterSetterTest {
 	public void testSetXWithNegativeValue() {
 		int unexpectedY = -1;
 		item.setX(unexpectedY);
-		fail("y-axis value of item should not be set to negative value");
+		assertFalse("y-axis value of item should not be set to negative value", true);
 	}
 	
 	@Test
@@ -166,7 +166,7 @@ public class ItemGetterSetterTest {
 	public void testSetYWithNegativeValue() {
 		int unexpectedY = -1;
 		item.setY(unexpectedY);
-		fail("x-axis value of item should not be set to negative value");
+		assertFalse("x-axis value of item should not be set to negative value", true);
 	}
 
 }
