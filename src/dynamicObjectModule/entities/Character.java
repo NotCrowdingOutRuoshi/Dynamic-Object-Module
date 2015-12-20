@@ -1,7 +1,5 @@
 package dynamicObjectModule.entities;
 
-import java.awt.Graphics;
-
 public class Character extends Sprite {
 	public enum DIRECTIONS {
 		UP, DOWN, LEFT, RIGHT
@@ -52,11 +50,6 @@ public class Character extends Sprite {
 	public void setSpeed(int speed) {
 		assert (speed >= 0);
 		_speed = speed;
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		g.drawRect(_x, _y, 100, 100);
 	}
 
 	private boolean isDirectionValid(DIRECTIONS direction) {

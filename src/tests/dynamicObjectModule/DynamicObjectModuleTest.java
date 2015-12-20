@@ -61,14 +61,12 @@ public class DynamicObjectModuleTest {
 	@Test(expected = AssertionError.class)
 	public void testDynamicObjectModuleWithNullInjection() {
 		dom = new DynamicObjectModule(null);
-
-		assertFalse("null injection to constructor should not be allowed", true);
 	}
 
 	@Test
 	public void testAddItem() {
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-		Item item = dom.findItem(0);
+		Item item = dom.findItem(_initialNumber);
 
 		assertNotNull("item should be added correctly", item);
 		assertEquals("item should be added correctly", _initialNumber, item.getIndex());
@@ -82,43 +80,31 @@ public class DynamicObjectModuleTest {
 	public void testAddItemWithSameIndex() {
 		dom.addItem(null, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
 		dom.addItem(null, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("item added with duplicate index is not allowed", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddItemWithNullName() {
 		dom.addItem(null, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("name of added item should not be null", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddItemWithEmptyName() {
 		dom.addItem("", _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("name of added item should not be empty", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddItemWithNegativeIndex() {
 		dom.addItem(_initialItemName, -1, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("index of added item should not be a negative value", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddItemWithNegativeX() {
 		dom.addItem(_initialItemName, _initialNumber, true, -1, Item.DEFAULT_Y);
-
-		assertFalse("x-axis value of added item should not be a negative value", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddItemWithNegativeY() {
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, -1);
-
-		assertFalse("y-axis value of added item should not be a negative value", true);
 	}
 
 	@Test
@@ -132,15 +118,11 @@ public class DynamicObjectModuleTest {
 	public void testAddVirtualCharacterWithDuplicateClientNumber() {
 		dom.addVirtualCharacter(0);
 		dom.addVirtualCharacter(0);
-
-		assertFalse("added character with duplicate client number is not allowed", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testAddVirtualCharacterWithNegativeClientNumber() {
 		dom.addVirtualCharacter(-1);
-
-		assertFalse("client number of added virtual character should not be a negative value", true);
 	}
 
 	@Test
@@ -184,10 +166,12 @@ public class DynamicObjectModuleTest {
 	@Test(expected = AssertionError.class)
 	public void testFindItemWithNegativeIndex() {
 		dom.findItem(-1);
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void testFindItemWithNegativeIndex2() {
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
 		dom.findItem(-1);
-
-		assertFalse("index given to dom.findItem() should not be a negative value", true);
 	}
 
 	@Test
@@ -226,8 +210,15 @@ public class DynamicObjectModuleTest {
 		assertNull("character should not be found", dom.findVirtualCharacter(lastCharacterId + 1));
 	}
 
+	@Test
 	public void testFindVirtualCharacterWithNegativeIndex() {
 		assertNull("character with negative index should not be found", dom.findVirtualCharacter(-1));
+		dom.addVirtualCharacter(_initialNumber);
+		assertNull("character with negative index should not be found", dom.findVirtualCharacter(-1));
+	}
+	
+	@Test
+	public void testFindVirtualCharacterWithNegativeIndex2() {
 		dom.addVirtualCharacter(_initialNumber);
 		assertNull("character with negative index should not be found", dom.findVirtualCharacter(-1));
 	}
@@ -266,23 +257,17 @@ public class DynamicObjectModuleTest {
 	@Test(expected = AssertionError.class)
 	public void testGetNonExistVirtualCharacterPosition() {
 		dom.getVirtualCharacterPosition(0);
-
-		assertFalse("position should not be gotten from non-exist virtual character", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testGetNonExistVirtualCharacterPosition2() {
 		dom.addVirtualCharacter(_initialNumber);
 		dom.getVirtualCharacterPosition(_initialNumber + 1);
-
-		assertFalse("position should not be gotten from non-exist virtual character", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testGetVirtualCharacterPositionWithNegativeIndex() {
 		dom.getVirtualCharacterPosition(-1);
-
-		assertFalse("position should not be gotten from virtual character with negative index", true);
 	}
 
 	@Test
@@ -312,24 +297,17 @@ public class DynamicObjectModuleTest {
 	public void testKeyGETPressedByNonExistVirtualCharacter() {
 		dom.addItem(_initialItemName, 0, true, Character.DEFAULT_X, Character.DEFAULT_Y);
 		dom.keyGETPressed(0);
-
-		assertFalse("key GET pressed to non-exist virtual character", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testKeyGETPressedWithNegativeIndexPassed() {
 		dom.keyGETPressed(-1);
-
-		assertFalse("keyGETPressed should not be called with negative client number passed", true);
 	}
-
+	
 	@Test
-	public void testUpdateItem() {
+	public void testUpdateItemShared() {
 		testUpdateItemShared(true);
 		testUpdateItemShared(false);
-		testUpdateItemOwner();
-		testUpdateItemX();
-		testUpdateItemY();
 	}
 
 	private void testUpdateItemShared(boolean isShared) {
@@ -339,7 +317,8 @@ public class DynamicObjectModuleTest {
 		assertEquals("item should be updated", isShared, dom.findItem(_initialNumber).isShared());
 	}
 
-	private void testUpdateItemOwner() {
+	@Test
+	public void testUpdateItemOwner() {
 		dom = new DynamicObjectModule(new TCPClientModule());
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
 		dom.addVirtualCharacter(0);
@@ -347,14 +326,16 @@ public class DynamicObjectModuleTest {
 		assertEquals("item should be updated", 0, dom.findItem(_initialNumber).getOwner());
 	}
 
-	private void testUpdateItemX() {
+	@Test
+	public void testUpdateItemX() {
 		dom = new DynamicObjectModule(new TCPClientModule());
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
 		dom.updateItem(_initialNumber, true, -1, 100, Item.DEFAULT_Y);
 		assertEquals("item should be updated", 100, dom.findItem(_initialNumber).getX());
 	}
 
-	private void testUpdateItemY() {
+	@Test
+	public void testUpdateItemY() {
 		dom = new DynamicObjectModule(new TCPClientModule());
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
 		dom.updateItem(_initialNumber, true, -1, Item.DEFAULT_X, 100);
@@ -362,7 +343,7 @@ public class DynamicObjectModuleTest {
 	}
 
 	@Test
-	public void testUpdateSpecificItemInMultipleItems() {
+	public void testUpdateOnlyFirstItemInMultipleItems() {
 		int expectedX = 100;
 		int expectedY = 200;
 		boolean expectedShared = false;
@@ -393,44 +374,23 @@ public class DynamicObjectModuleTest {
 	@Test(expected = AssertionError.class)
 	public void testUpdateItemWithEmptyItemSet() {
 		dom.updateItem(_initialNumber, true, _initialNumber, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("update item should fail with empty item set", true);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testUpdateNonExistItem() {
 		dom.addVirtualCharacter(_initialNumber);
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-		dom.updateItem(_initialNumber, false, _initialNumber, 100, 100);
-
-		Item item = dom.findItem(_initialNumber);
-
-		assertEquals(_initialItemName, item.getName());
-		assertEquals(_initialNumber, item.getIndex());
-		assertEquals(true, item.isShared());
-		assertEquals(Item.DEFAULT_X, item.getX());
-		assertEquals(Item.DEFAULT_Y, item.getY());
-
-		assertFalse("update should fail while updating non-exist item", true);
+		dom.updateItem(_initialNumber + 1, false, _initialNumber, 100, 100);
 	}
 
 	@Test(expected = AssertionError.class)
 	public void testUpdateItemToNegativeOwnerNumber() {
 		dom.addItem(_initialItemName, _initialNumber, true, Item.DEFAULT_X, Item.DEFAULT_Y);
-		dom.updateItem(_initialNumber, true, -1, Item.DEFAULT_X, Item.DEFAULT_Y);
-
-		assertFalse("item should not be updated to a negative owner index", true);
+		dom.updateItem(_initialNumber, true, -5, Item.DEFAULT_X, Item.DEFAULT_Y);
 	}
 
 	@Test
-	public void testUpdateVirtualCharacter() {
-		testUpdateCharacterDirection();
-		testUpdateCharacterSpeed();
-		testUpdateCharacterX();
-		testUpdateCharacterY();
-	}
-
-	private void testUpdateCharacterDirection() {
+	public void testUpdateCharacterDirection() {
 		for (DIRECTIONS direction : DIRECTIONS.values()) {
 			dom = new DynamicObjectModule(new TCPClientModule());
 			dom.addVirtualCharacter(0);
@@ -441,7 +401,8 @@ public class DynamicObjectModuleTest {
 		}
 	}
 
-	private void testUpdateCharacterSpeed() {
+	@Test
+	public void testUpdateCharacterSpeed() {
 		int expectedSpeed = 100;
 
 		dom = new DynamicObjectModule(new TCPClientModule());
@@ -453,7 +414,8 @@ public class DynamicObjectModuleTest {
 		assertEquals(expectedSpeed, character.getSpeed());
 	}
 
-	private void testUpdateCharacterX() {
+	@Test
+	public void testUpdateCharacterX() {
 		int expectedX = 100;
 
 		dom = new DynamicObjectModule(new TCPClientModule());
@@ -465,7 +427,8 @@ public class DynamicObjectModuleTest {
 		assertEquals(expectedX, character.getX());
 	}
 
-	private void testUpdateCharacterY() {
+	@Test
+	public void testUpdateCharacterY() {
 		int expectedY = 100;
 
 		dom = new DynamicObjectModule(new TCPClientModule());
@@ -478,7 +441,7 @@ public class DynamicObjectModuleTest {
 	}
 	
 	@Test
-	public void testUpdateSpecificCharacterInMultipleCharacters() {
+	public void testOnlyUpdateFirstCharacterInMultipleCharacters() {
 		int expectedSpeed = Character.DEFAULT_SPEED + 100;
 		int expectedX = Character.DEFAULT_X + 200;
 		int expectedY = Character.DEFAULT_Y + 300;

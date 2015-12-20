@@ -1,8 +1,6 @@
 package dynamicObjectModule.entities;
 
-import javax.swing.JLabel;
-
-public abstract class Sprite extends JLabel {
+public abstract class Sprite {
 	public static final int DEFAULT_X = 0;
 	public static final int DEFAULT_Y = 0;
 	
@@ -17,21 +15,21 @@ public abstract class Sprite extends JLabel {
 		_y = y;
 	}
 
-	@Override
 	public int getX() {
 		return _x;
 	}
 
 	public void setX(int x) {
+		assert x >= 0;
 		_x = x;
 	}
 
-	@Override
 	public int getY() {
 		return _y;
 	}
 
 	public void setY(int y) {
+		assert y >= 0;
 		_y = y;
 	}
 }

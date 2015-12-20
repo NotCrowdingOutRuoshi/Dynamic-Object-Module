@@ -114,12 +114,10 @@ public class DynamicObjectModule {
 		Character owner = findVirtualCharacter(ownerId); 
 
 		assert (item != null);
+		assert owner != null || ownerId == Item.EMPTY_OWNER;
 
-		item.setShared(shared);
-		
-		if (owner != null || ownerId == Item.EMPTY_OWNER) {
-			item.setOwner(ownerId);
-		}
+		item.setShared(shared);		
+		item.setOwner(ownerId);
 		
 		item.setX(x);
 		item.setY(y);

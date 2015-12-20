@@ -1,7 +1,5 @@
 package dynamicObjectModule.entities;
 
-import java.awt.Graphics;
-
 public class Item extends Sprite {
 	public final static int EMPTY_OWNER = -1;
 
@@ -15,7 +13,7 @@ public class Item extends Sprite {
 
 		assert (name != null && !name.isEmpty());
 		assert (index >= 0);
-		
+
 		_name = name;
 		_owner = EMPTY_OWNER;
 		_index = index;
@@ -33,11 +31,6 @@ public class Item extends Sprite {
 
 	public int getOwner() {
 		return _owner;
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		g.drawRect(_x, _y, 50, 50);
 	}
 
 	public void setOwner(int owner) {
