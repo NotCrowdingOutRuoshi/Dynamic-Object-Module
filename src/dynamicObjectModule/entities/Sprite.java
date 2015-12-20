@@ -4,7 +4,6 @@ public abstract class Sprite {
 	public static final int DEFAULT_X = 0;
 	public static final int DEFAULT_Y = 0;
 
-	protected StringBuilder consoleOutput;
 	protected int _id;
 	protected int _x;
 	protected int _y;
@@ -19,17 +18,7 @@ public abstract class Sprite {
 		_y = y;
 	}
 
-	public void draw() {
-		flushConsoleOutput();
-		System.out.println(System.getProperty("line.separator"));
-	}
-
-	public String flushConsoleOutput() {
-		String result = consoleOutput.toString();
-		consoleOutput = new StringBuilder();
-
-		return result;
-	}
+	public abstract void draw();
 
 	public int getId() {
 		return _id;

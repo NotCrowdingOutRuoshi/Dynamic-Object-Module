@@ -23,21 +23,7 @@ public class Character extends Sprite {
 
 	@Override
 	public void draw() {
-		super.draw();
 
-		consoleOutput.append("Draw:Character");
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("ID:" + _id);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("X:" + _x);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("Y:" + _y);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("Direction:" + _direction);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("Speed:" + _speed);
-
-		System.out.println(consoleOutput);
 	}
 
 	public DIRECTIONS getDirection() {

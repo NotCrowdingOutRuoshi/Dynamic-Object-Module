@@ -19,17 +19,7 @@ public class Item extends Sprite {
 
 	@Override
 	public void draw() {
-		super.draw();
 
-		consoleOutput.append("Draw:Item");
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("ID:" + _id);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("X:" + _x);
-		consoleOutput.append(System.getProperty("line.separator"));
-		consoleOutput.append("Y:" + _y);
-
-		System.out.println(consoleOutput);
 	}
 
 	public int getOwner() {

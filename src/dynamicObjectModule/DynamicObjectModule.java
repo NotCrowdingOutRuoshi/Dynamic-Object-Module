@@ -7,8 +7,8 @@ import dynamicObjectModule.entities.Sprite;
 import dynamicObjectModule.entities.Item;
 import dynamicObjectModule.entities.Character;
 import dynamicObjectModule.entities.Character.DIRECTIONS;
-import fake.MoveCodes;
-import fake.TCPClientModule;
+import mock.MoveCodes;
+import mock.TCPClientModule;
 
 public class DynamicObjectModule {
 	private ArrayList<Item> _items;

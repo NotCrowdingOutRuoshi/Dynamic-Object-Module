@@ -16,7 +16,7 @@ import dynamicObjectModule.entities.Character;
 import dynamicObjectModule.entities.Item;
 import dynamicObjectModule.entities.Sprite;
 import dynamicObjectModule.entities.Character.DIRECTIONS;
-import fake.TCPClientModule;
+import mock.TCPClientModule;
 
 public class DynamicObjectModuleTest {
 	private DynamicObjectModule dom;
