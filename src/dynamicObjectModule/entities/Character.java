@@ -8,18 +8,16 @@ public class Character extends Sprite {
 	public static final int DEFAULT_SPEED = 0;
 	public static final DIRECTIONS DEFAULT_DIRECTION = DIRECTIONS.RIGHT; 
 
-	private int _id;
+	
 	private int _speed;
 	private DIRECTIONS _direction;
 
 	public Character(int id, int x, int y, DIRECTIONS direction, int speed) {
-		super(x, y);
+		super(id, x, y);
 		
-		assert (id >= 0);
 		assert (isDirectionValid(direction));
 		assert (speed >= 0);
 
-		_id = id;
 		_direction = direction;
 		_speed = speed;
 	}
@@ -32,15 +30,6 @@ public class Character extends Sprite {
 		assert (isDirectionValid(direction));
 
 		_direction = direction;
-	}
-
-	public int getId() {
-		return _id;
-	}
-
-	public void setId(int id) {
-		assert (id >= 0);
-		_id = id;
 	}
 
 	public int getSpeed() {

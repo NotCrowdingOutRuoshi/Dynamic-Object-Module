@@ -4,15 +4,27 @@ public abstract class Sprite {
 	public static final int DEFAULT_X = 0;
 	public static final int DEFAULT_Y = 0;
 	
+	protected int _id;
 	protected int _x;
 	protected int _y;
 
-	public Sprite(int x, int y) {
+	public Sprite(int id, int x, int y) {
+		assert (id >= 0);
 		assert (x >= 0);
 		assert (y >= 0);
 		
+		_id = id;
 		_x = x;
 		_y = y;
+	}
+	
+	public int getId() {
+		return _id;
+	}
+
+	public void setId(int id) {
+		assert (id >= 0);
+		_id = id;
 	}
 
 	public int getX() {

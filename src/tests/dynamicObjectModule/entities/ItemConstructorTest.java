@@ -51,7 +51,7 @@ public class ItemConstructorTest {
 	public void testIndexInitializedSuccessfully() throws IllegalArgumentException, IllegalAccessException {
 		for (int i = 0; i < 1000; i++) {
 			Item item = new Item("name", i, true, 0, 0);
-			assertEquals("Item index should be initialized", i, item.getIndex());
+			assertEquals("Item index should be initialized", i, item.getId());
 		}
 	}
 	

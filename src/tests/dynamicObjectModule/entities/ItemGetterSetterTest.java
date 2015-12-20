@@ -38,20 +38,20 @@ public class ItemGetterSetterTest {
 
 	@Test
 	public void testGetIndex() {
-		assertEquals("gotten index should be " + initialItemIndex, initialItemIndex, item.getIndex());
+		assertEquals("gotten index should be " + initialItemIndex, initialItemIndex, item.getId());
 	}
 
 	@Test
 	public void testSetIndex() {
 		int expectedIndex = 1;
-		item.setIndex(expectedIndex);
-		assertEquals("index should be set to " + expectedIndex, expectedIndex, item.getIndex());
+		item.setId(expectedIndex);
+		assertEquals("index should be set to " + expectedIndex, expectedIndex, item.getId());
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void testSetIndexWithNegativeValue() {
 		int unexpectedIndex = -1;
-		item.setIndex(unexpectedIndex);
+		item.setId(unexpectedIndex);
 	}
 
 	@Test

@@ -3,30 +3,18 @@ package dynamicObjectModule.entities;
 public class Item extends Sprite {
 	public final static int EMPTY_OWNER = -1;
 
-	private int _index;
 	private int _owner;
 	private String _name;
 	private boolean _shared;
 
-	public Item(String name, int index, boolean shared, int x, int y) {
-		super(x, y);
+	public Item(String name, int id, boolean shared, int x, int y) {
+		super(id, x, y);
 
 		assert (name != null && !name.isEmpty());
-		assert (index >= 0);
 
 		_name = name;
 		_owner = EMPTY_OWNER;
-		_index = index;
 		_shared = shared;
-	}
-
-	public int getIndex() {
-		return _index;
-	}
-
-	public void setIndex(int index) {
-		assert (index >= 0);
-		_index = index;
 	}
 
 	public int getOwner() {

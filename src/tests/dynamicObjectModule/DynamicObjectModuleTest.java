@@ -69,7 +69,7 @@ public class DynamicObjectModuleTest {
 		Item item = dom.findItem(_initialNumber);
 
 		assertNotNull("item should be added correctly", item);
-		assertEquals("item should be added correctly", _initialNumber, item.getIndex());
+		assertEquals("item should be added correctly", _initialNumber, item.getId());
 		assertTrue("item should be added correctly", item.isShared());
 		assertEquals("item should be added correctly", _initialItemName, item.getName());
 		assertEquals("item should be added correctly", Item.DEFAULT_X, item.getX());
@@ -134,7 +134,7 @@ public class DynamicObjectModuleTest {
 
 		Item item = dom.findItem(lastItemIndex);
 		assertNotNull("item should be found correctly", item);
-		assertEquals("item should be found correctly", lastItemIndex, item.getIndex());
+		assertEquals("item should be found correctly", lastItemIndex, item.getId());
 		assertTrue("item should be found correctly", item.isShared());
 		assertEquals("item should be found correctly", _initialItemName, item.getName());
 		assertEquals("item should be found correctly", Item.DEFAULT_X, item.getX());
@@ -357,14 +357,14 @@ public class DynamicObjectModuleTest {
 		Item secondItem = dom.findItem(_initialNumber + 1);
 
 		assertEquals("only first item should be correctly updated", _initialItemName, firstItem.getName());
-		assertEquals("only first item should be correctly updated", _initialNumber, firstItem.getIndex());
+		assertEquals("only first item should be correctly updated", _initialNumber, firstItem.getId());
 		assertEquals("only first item should be correctly updated", expectedShared, firstItem.isShared());
 		assertEquals("only first item should be correctly updated", _initialNumber, firstItem.getOwner());
 		assertEquals("only first item should be correctly updated", expectedX, firstItem.getX());
 		assertEquals("only first item should be correctly updated", expectedY, firstItem.getY());
 
 		assertEquals("only first item should be correctly updated", _initialItemName, secondItem.getName());
-		assertEquals("only first item should be correctly updated", _initialNumber + 1, secondItem.getIndex());
+		assertEquals("only first item should be correctly updated", _initialNumber + 1, secondItem.getId());
 		assertEquals("only first item should be correctly updated", true, secondItem.isShared());
 		assertEquals("only first item should be correctly updated", Item.EMPTY_OWNER, secondItem.getOwner());
 		assertEquals("only first item should be correctly updated", Item.DEFAULT_X, secondItem.getX());
