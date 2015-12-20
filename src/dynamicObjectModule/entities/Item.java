@@ -17,6 +17,18 @@ public class Item extends Sprite {
 		_shared = shared;
 	}
 
+	@Override
+	public void draw() {
+		super.draw();
+
+		consoleOutput.append("Item drawed \n");
+		consoleOutput.append("ID: " + _id + "\n");
+		consoleOutput.append("x: " + _x + "\n");
+		consoleOutput.append("y: " + _y + "\n");
+
+		System.out.println(consoleOutput);
+	}
+
 	public int getOwner() {
 		return _owner;
 	}
